@@ -1,130 +1,197 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XREZZKY STORE</title>
+    <title>XREZZKY STORE | Digital Game Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            --dark-color: #1a1a1a;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #333;
+            padding: 20px;
         }
 
+        /* Container Utama - Responsif */
         .container {
-            width: 90%;
-            max-width: 450px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        h1 { font-size: 24px; letter-spacing: 2px; margin-bottom: 5px; }
-        .divider { width: 50px; height: 3px; background: #007bff; margin: 10px auto 20px; }
+        h1 { 
+            font-size: 28px; 
+            font-weight: 800;
+            letter-spacing: 1px; 
+            margin-bottom: 5px; 
+            color: var(--dark-color);
+        }
 
-        .desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px; }
+        .divider { 
+            width: 60px; 
+            height: 4px; 
+            background: var(--primary-color); 
+            margin: 15px auto 25px; 
+            border-radius: 10px;
+        }
 
-        /* Style Tombol Utama */
+        .desc { 
+            font-size: 14px; 
+            color: #555; 
+            line-height: 1.6; 
+            margin-bottom: 30px; 
+        }
+
+        /* Grouping Tombol Utama */
+        .action-buttons {
+            margin-bottom: 35px;
+        }
+
         .btn-main {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #111;
             color: white;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
-            transition: 0.3s;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Tombol Baru Info Stok (Warna Biru/Hijau) */
+        .btn-wa { background: #222; }
+
+        /* Tombol Info Stok dengan Animasi Pulse Pelan */
         .btn-info {
-            background: #007bff;
-            margin-bottom: 30px;
+            background: var(--secondary-gradient);
+            animation: softPulse 3s infinite; /* Denyut diperlambat ke 3 detik */
         }
 
-        .btn-main i { margin-right: 10px; }
-        .btn-main:hover { transform: scale(1.02); opacity: 0.9; }
+        @keyframes softPulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,114,255,0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,114,255,0.5); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,114,255,0.3); }
+        }
+
+        .btn-main i { margin-right: 12px; font-size: 18px; }
+        
+        /* Hover Effect untuk PC */
+        .btn-main:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
 
         /* Grid Komunitas */
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
         .grid-item {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 15px;
-            border-radius: 15px;
+            background: white;
+            padding: 18px 10px;
+            border-radius: 20px;
             text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: 0.3s;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid #f0f0f0;
         }
 
-        .grid-item i { font-size: 20px; margin-bottom: 8px; }
-        .grid-item:hover { background: #f8f9fa; border-color: #007bff; }
+        .grid-item i { font-size: 24px; margin-bottom: 10px; }
 
-        .footer { font-size: 10px; color: #aaa; margin-top: 30px; }
+        .grid-item:hover {
+            background: #fdfdfd;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .footer { 
+            font-size: 11px; 
+            color: #888; 
+            margin-top: 40px; 
+            line-height: 1.5;
+        }
+
+        /* Penyesuaian untuk Tablet/PC Besar */
+        @media (min-width: 768px) {
+            .container { padding: 50px; }
+            .grid-container { gap: 20px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container animate__animated animate__fadeInUp">
-    <h1>XREZZKY STORE</h1>
-    <div class="divider"></div>
+<div class="container animate__animated animate__fadeIn">
+    <header>
+        <h1>XREZZKY STORE</h1>
+        <div class="divider"></div>
+        <p class="desc">
+            Layanan digital game profesional dengan sistem kerja terstruktur. 
+            <strong>Aman, Konsisten, dan Terkontrol.</strong>
+        </p>
+    </header>
 
-    <p class="desc">
-        XREZZKY STORE menyediakan layanan digital game dengan sistem kerja terstruktur dan terkontrol. 
-        Fokus utama kami adalah kejelasan proses dan keamanan transaksi.
-    </p>
-
-    <a href="https://wa.me/6288293064112" class="btn-main">
-        <i class="fab fa-whatsapp"></i> Kontak Resmi
-    </a>
-
-    <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info animate__animated animate__pulse animate__infinite">
-        <i class="fas fa-bullhorn"></i> INFO ALL STOK & TESTI
-    </a>
-
-    <h3>Platform & Komunitas</h3>
-    
-    <div class="grid-container">
-        <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="grid-item">
-            <i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp
+    <div class="action-buttons">
+        <a href="https://wa.me/6288293064112" class="btn-main btn-wa">
+            <i class="fab fa-whatsapp"></i> Kontak Resmi Admin
         </a>
-        <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
-            <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
-        </a>
-        <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
-            <i class="fab fa-tiktok"></i> TikTok
-        </a>
-        <a href="#" class="grid-item">
-            <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
+
+        <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info">
+            <i class="fas fa-certificate"></i> INFO ALL STOK & TESTIMONI
         </a>
     </div>
 
-    <div class="footer">
-        © 2025 XREZZKY STORE. All Rights Reserved.<br>
-        Sedang Dikembangkan, Terimakasih Sudah Mendukung XREZZKYSTORE
-    </div>
+    <section>
+        <h4 style="margin-bottom: 15px; color: #444;">Platform & Komunitas</h4>
+        <div class="grid-container">
+            <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="grid-item">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i> Grup WA
+            </a>
+            <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
+                <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
+                <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+            </a>
+            <a href="https://discord.gg/xDfZJHb2yK" class="grid-item">
+                <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <strong>&copy; 2026 XREZZKY STORE.</strong><br>
+        Terimakasih telah mempercayai layanan kami.
+    </footer>
 </div>
 
 </body>
