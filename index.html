@@ -9,14 +9,14 @@
     
     <style>
         :root {
-            --primary-color: #007bff;
-            --secondary-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            --dark-color: #1a1a1a;
-            --glass-bg: rgba(255, 255, 255, 0.9);
+            --primary: #007bff;
+            --gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            --dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             margin: 0;
             display: flex;
@@ -29,17 +29,17 @@
         .container {
             width: 100%;
             max-width: 480px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
             padding: 40px 25px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
-        h1 { font-size: 26px; font-weight: 800; margin-bottom: 5px; color: var(--dark-color); }
-        .divider { width: 60px; height: 4px; background: var(--primary-color); margin: 15px auto 25px; border-radius: 10px; }
+        h1 { font-size: 26px; font-weight: 800; color: var(--dark); margin: 0; }
+        .divider { width: 50px; height: 4px; background: var(--primary); margin: 15px auto 20px; border-radius: 10px; }
         .desc { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 30px; }
 
         /* Tombol Utama */
@@ -49,26 +49,27 @@
             justify-content: center;
             color: white;
             text-decoration: none;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 14px;
+            border-radius: 12px;
             margin-bottom: 12px;
             font-weight: 600;
-            transition: all 0.4s ease;
-            cursor: pointer;
+            transition: 0.3s;
             border: none;
             width: 100%;
-            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box;
         }
 
-        .btn-wa { background: #222; }
-        .btn-info {
-            background: var(--secondary-gradient);
+        .btn-wa-admin { background: #222; }
+        .btn-info { 
+            background: var(--gradient); 
             animation: softPulse 3s infinite;
         }
 
         @keyframes softPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         /* Grid Komunitas */
@@ -76,13 +77,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .grid-item {
             background: white;
             padding: 15px;
-            border-radius: 20px;
+            border-radius: 18px;
             text-decoration: none;
             color: #333;
             font-size: 13px;
@@ -91,57 +92,56 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid #eee;
+            border: 1px solid #f0f0f0;
         }
 
         .grid-item i { font-size: 22px; margin-bottom: 8px; }
-        .grid-item:hover { transform: translateY(-3px); border-color: var(--primary-color); }
+        .grid-item:hover { transform: translateY(-3px); border-color: var(--primary); }
 
-        /* MODAL STYLE (Pop-up Pilihan) */
+        /* POPUP MODAL */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
             align-items: center;
             justify-content: center;
         }
 
-        .modal-content {
+        .modal-box {
             background: white;
             padding: 30px;
-            border-radius: 25px;
+            border-radius: 20px;
             width: 85%;
             max-width: 350px;
-            text-align: center;
             position: relative;
         }
 
-        .btn-opt {
+        .modal-box h3 { margin: 0 0 10px; font-size: 18px; }
+        .modal-box p { font-size: 13px; color: #666; margin-bottom: 20px; }
+
+        .btn-choice {
             display: block;
-            padding: 15px;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 12px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
             color: white;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
-        .opt-komunitas { background: #25D366; }
-        .opt-grup1 { background: #007bff; }
-
-        .close-modal {
-            margin-top: 15px;
-            display: inline-block;
-            color: #888;
-            font-size: 13px;
-            cursor: pointer;
+        .bg-komunitas { background: #25D366; }
+        .bg-grup { background: var(--primary); }
+        
+        .close-btn { 
+            margin-top: 15px; 
+            display: inline-block; 
+            color: #999; 
+            cursor: pointer; 
+            font-size: 12px;
             text-decoration: underline;
         }
 
@@ -151,70 +151,75 @@
 <body>
 
 <div class="container animate__animated animate__fadeIn">
-    <h1>XREZZKY STORE</h1>
-    <div class="divider"></div>
-    <p class="desc">Layanan digital game profesional. Aman & Terpercaya.</p>
+    <header>
+        <h1>XREZZKY STORE</h1>
+        <div class="divider"></div>
+        <p class="desc">Layanan digital game profesional. Aman, Konsisten, dan Terkontrol.</p>
+    </header>
 
-    <a href="https://wa.me/6288293064112" class="btn-main btn-wa">
-        <i class="fab fa-whatsapp"></i> Kontak Resmi Admin
-    </a>
-
-    <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info">
-        <i class="fas fa-bullhorn"></i> INFO ALL STOK & TESTI
-    </a>
-
-    <div class="grid-container">
-        <div class="grid-item" onclick="openModal()" style="cursor: pointer;">
-            <i class="fab fa-whatsapp" style="color: #25D366;"></i> Grup WA
-        </div>
-        
-        <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
-            <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+    <div class="action-buttons">
+        <a href="https://wa.me/6288293064112" class="btn-main btn-wa-admin">
+            <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Kontak Resmi Admin
         </a>
-        <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
-            <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
-        </a>
-        <a href="https://discord.gg/link_kamu" class="grid-item">
-            <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
+
+        <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info">
+            <i class="fas fa-certificate" style="margin-right: 10px;"></i> INFO ALL STOK & TESTIMONI
         </a>
     </div>
 
-    <div class="footer">© 2025 XREZZKY STORE</div>
+    <section>
+        <h4 style="margin-bottom: 15px; color: #444; font-size: 14px;">Platform & Komunitas</h4>
+        <div class="grid-container">
+            <div class="grid-item" onclick="openModal()" style="cursor: pointer;">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i> Komunitas & Grup
+            </div>
+            
+            <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
+                <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
+                <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+            </a>
+            <a href="https://discord.gg/xDfZJHb2yK" class="grid-item">
+                <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <strong>&copy; 2026 XREZZKY STORE</strong><br>
+        Terimakasih telah mempercayai layanan kami.
+    </footer>
 </div>
 
 <div id="waModal" class="modal">
-    <div class="modal-content animate__animated animate__zoomInUp">
-        <h3 style="margin-top: 0;">Pilih Grup WhatsApp</h3>
-        <p style="font-size: 13px; color: #666;">Silakan pilih grup yang ingin Anda masuki:</p>
+    <div class="modal-box animate__animated animate__zoomIn">
+        <h3>Pilih Tujuan</h3>
+        <p>Silakan pilih grup yang ingin kamu masuki:</p>
         
-        <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-opt opt-komunitas">
-            <i class="fas fa-users"></i> Gabung Komunitas
+        <a href="https://chat.whatsapp.com/JPhQHMBp5qKIjMmmTxbWXt" class="btn-choice bg-komunitas">
+            <i class="fas fa-users"></i> Komunitas
         </a>
         
-        <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="btn-opt opt-grup1">
-            <i class="fas fa-gamepad"></i> Gabung Grup 1
+        <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="btn-choice bg-grup">
+            <i class="fas fa-gamepad"></i> Grup 1 (Jb all game)
         </a>
 
-        <div class="close-modal" onclick="closeModal()">Batal</div>
+        <div class="close-btn" onclick="closeModal()">Batal</div>
     </div>
 </div>
 
 <script>
-    const modal = document.getElementById("Komunitas & Grup");
-
-    function openModal(Komunitas) {
-        modal.style.display = "https://chat.whatsapp.com/JPhQHMBp5qKIjMmmTxbWXt";
+    function openModal() {
+        document.getElementById("waModal").style.display = "flex";
     }
-
-    function closeModal(Grup Jb all game) {
-        modal.style.display = "https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J";
+    function closeModal() {
+        document.getElementById("waModal").style.display = "none";
     }
-
-    // Tutup modal jika user klik di luar kotak
+    // Tutup jika klik diwarea luar
     window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
+        let modal = document.getElementById("waModal");
+        if (event.target == modal) { closeModal(); }
     }
 </script>
 
