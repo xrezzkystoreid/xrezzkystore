@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             margin: 0;
             display: flex;
@@ -26,47 +26,23 @@
             padding: 20px;
         }
 
-        /* Container Utama - Responsif */
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            padding: 40px 30px;
+            padding: 40px 25px;
             border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
             border: 1px solid rgba(255,255,255,0.3);
         }
 
-        h1 { 
-            font-size: 28px; 
-            font-weight: 800;
-            letter-spacing: 1px; 
-            margin-bottom: 5px; 
-            color: var(--dark-color);
-        }
+        h1 { font-size: 26px; font-weight: 800; margin-bottom: 5px; color: var(--dark-color); }
+        .divider { width: 60px; height: 4px; background: var(--primary-color); margin: 15px auto 25px; border-radius: 10px; }
+        .desc { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 30px; }
 
-        .divider { 
-            width: 60px; 
-            height: 4px; 
-            background: var(--primary-color); 
-            margin: 15px auto 25px; 
-            border-radius: 10px;
-        }
-
-        .desc { 
-            font-size: 14px; 
-            color: #555; 
-            line-height: 1.6; 
-            margin-bottom: 30px; 
-        }
-
-        /* Grouping Tombol Utama */
-        .action-buttons {
-            margin-bottom: 35px;
-        }
-
+        /* Tombol Utama */
         .btn-main {
             display: flex;
             align-items: center;
@@ -78,29 +54,21 @@
             margin-bottom: 12px;
             font-weight: 600;
             transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            font-size: 16px;
         }
 
         .btn-wa { background: #222; }
-
-        /* Tombol Info Stok dengan Animasi Pulse Pelan */
         .btn-info {
             background: var(--secondary-gradient);
-            animation: softPulse 3s infinite; /* Denyut diperlambat ke 3 detik */
+            animation: softPulse 3s infinite;
         }
 
         @keyframes softPulse {
-            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,114,255,0.3); }
-            50% { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,114,255,0.5); }
-            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,114,255,0.3); }
-        }
-
-        .btn-main i { margin-right: 12px; font-size: 18px; }
-        
-        /* Hover Effect untuk PC */
-        .btn-main:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
 
         /* Grid Komunitas */
@@ -108,92 +76,147 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+            margin-top: 20px;
         }
 
         .grid-item {
             background: white;
-            padding: 18px 10px;
+            padding: 15px;
             border-radius: 20px;
             text-decoration: none;
             color: #333;
             font-size: 13px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #eee;
         }
 
-        .grid-item i { font-size: 24px; margin-bottom: 10px; }
+        .grid-item i { font-size: 22px; margin-bottom: 8px; }
+        .grid-item:hover { transform: translateY(-3px); border-color: var(--primary-color); }
 
-        .grid-item:hover {
-            background: #fdfdfd;
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            transform: scale(1.05);
+        /* MODAL STYLE (Pop-up Pilihan) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
         }
 
-        .footer { 
-            font-size: 11px; 
-            color: #888; 
-            margin-top: 40px; 
-            line-height: 1.5;
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 350px;
+            text-align: center;
+            position: relative;
         }
 
-        /* Penyesuaian untuk Tablet/PC Besar */
-        @media (min-width: 768px) {
-            .container { padding: 50px; }
-            .grid-container { gap: 20px; }
+        .btn-opt {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
         }
+
+        .opt-komunitas { background: #25D366; }
+        .opt-grup1 { background: #007bff; }
+
+        .close-modal {
+            margin-top: 15px;
+            display: inline-block;
+            color: #888;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .footer { font-size: 11px; color: #888; margin-top: 40px; }
     </style>
 </head>
 <body>
 
 <div class="container animate__animated animate__fadeIn">
-    <header>
-        <h1>XREZZKY STORE</h1>
-        <div class="divider"></div>
-        <p class="desc">
-            Layanan digital game profesional dengan pengelolaan sistematis. 
-            <strong>Aman, Konsisten, dan Terkontrol.</strong>
-        </p>
-    </header>
+    <h1>XREZZKY STORE</h1>
+    <div class="divider"></div>
+    <p class="desc">Layanan digital game profesional. Aman & Terpercaya.</p>
 
-    <div class="action-buttons">
-        <a href="https://wa.me/6288293064112" class="btn-main btn-wa">
-            <i class="fab fa-whatsapp"></i> Kontak Resmi Admin
+    <a href="https://wa.me/6288293064112" class="btn-main btn-wa">
+        <i class="fab fa-whatsapp"></i> Kontak Resmi Admin
+    </a>
+
+    <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info">
+        <i class="fas fa-bullhorn"></i> INFO ALL STOK & TESTI
+    </a>
+
+    <div class="grid-container">
+        <div class="grid-item" onclick="openModal()" style="cursor: pointer;">
+            <i class="fab fa-whatsapp" style="color: #25D366;"></i> Grup WA
+        </div>
+        
+        <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
+            <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
         </a>
-
-        <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-main btn-info">
-            <i class="fas fa-certificate"></i> INFO ALL STOK & TESTIMONI
+        <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
+            <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
+        </a>
+        <a href="https://discord.gg/link_kamu" class="grid-item">
+            <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
         </a>
     </div>
 
-    <section>
-        <h4 style="margin-bottom: 15px; color: #444;">Platform & Komunitas</h4>
-        <div class="grid-container">
-            <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="grid-item">
-                <i class="fab fa-whatsapp" style="color: #25D366;"></i> Grup WA
-            </a>
-            <a href="https://www.instagram.com/xrezzkystore" class="grid-item">
-                <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
-            </a>
-            <a href="https://www.tiktok.com/@xrezzky.store" class="grid-item">
-                <i class="fab fa-tiktok" style="color: #000;"></i> TikTok
-            </a>
-            <a href="https://discord.gg/xDfZJHb2yK" class="grid-item">
-                <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
-            </a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <strong>&copy;2026 XREZZKY STORE. All Rights Reserved.<br>
-        Sedang Dikembangkan,.</strong><br>
-        Terimakasih telah mendukung & mempercayai layanan kami.
-    </footer>
+    <div class="footer">© 2025 XREZZKY STORE</div>
 </div>
+
+<div id="waModal" class="modal">
+    <div class="modal-content animate__animated animate__zoomInUp">
+        <h3 style="margin-top: 0;">Pilih Grup WhatsApp</h3>
+        <p style="font-size: 13px; color: #666;">Silakan pilih grup yang ingin Anda masuki:</p>
+        
+        <a href="https://whatsapp.com/channel/0029Vb6wSkq05MUaGz8NkL26" class="btn-opt opt-komunitas">
+            <i class="fas fa-users"></i> Gabung Komunitas
+        </a>
+        
+        <a href="https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J" class="btn-opt opt-grup1">
+            <i class="fas fa-gamepad"></i> Gabung Grup 1
+        </a>
+
+        <div class="close-modal" onclick="closeModal()">Batal</div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("Komunitas & Grup");
+
+    function openModal(Komunitas) {
+        modal.style.display = "https://chat.whatsapp.com/JPhQHMBp5qKIjMmmTxbWXt";
+    }
+
+    function closeModal(Grup Jb all game) {
+        modal.style.display = "https://chat.whatsapp.com/LnLWKCcc6l9CDXq0ybF01J";
+    }
+
+    // Tutup modal jika user klik di luar kotak
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
